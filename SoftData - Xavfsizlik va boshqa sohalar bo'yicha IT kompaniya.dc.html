@@ -19,34 +19,12 @@
     ::selection { background: #29B85D; color: #0A0F08; }
     @keyframes af-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @keyframes af-blink { 0%,100% { opacity: 0; } 50% { opacity: 1; } }
-    @keyframes af-spin { to { transform: rotate(360deg); } }
     @keyframes af-glow { 0%,100% { opacity: .7; filter: brightness(1); } 50% { opacity: 1; filter: brightness(1.35); } }
     @keyframes af-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
     @keyframes af-mesh1 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-14%, 12%) scale(1.15); } 66% { transform: translate(6%, -8%) scale(.92); } }
     @keyframes af-mesh2 { 0%,100% { transform: translate(0,0) scale(1); } 40% { transform: translate(16%, -10%) scale(1.12); } 75% { transform: translate(-8%, 6%) scale(.95); } }
     @keyframes af-mesh3 { 0%,100% { transform: translate(0,0) scale(1); opacity: .7; } 50% { transform: translate(-12%, 14%) scale(1.25); opacity: 1; } }
-    /* Minimal (rasmiy) uslub — bezaklar */
-    @keyframes m-blob { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-24px, 18px) scale(1.08); } }
-    @keyframes m-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    [data-mlink] { position: relative; }
-    [data-mlink]::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; background: #2F6B1E; transition: width .25s ease; }
-    [data-mlink]:hover::after { width: 100%; }
-    [data-mcard] { transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease !important; }
-    [data-mcard]:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(20,30,15,.10) !important; border-color: #C5D3BD !important; }
-    /* Minimal (rasmiy) uslub */
-    html[data-om-style="minimal"] [data-theme-root], html[data-om-style="minimal"] [data-theme-root] * { font-family: 'Inter', sans-serif !important; letter-spacing: 0 !important; }
-    html[data-om-style="minimal"] [data-theme-root] * { animation: none !important; }
-    html[data-om-style="minimal"] [data-fx] { display: none !important; }
-    html[data-om-style="minimal"] [data-cbtn]::before, html[data-om-style="minimal"] [data-cbtn]::after { display: none !important; }
-    html[data-om-style="minimal"] [data-ccard]::before, html[data-om-style="minimal"] [data-ccard]::after { display: none !important; }
-    html[data-om-style="minimal"] [data-cbtn] { border-radius: 8px !important; }
-    html[data-om-style="minimal"] [data-cbtn]:hover { box-shadow: none !important; transform: none !important; animation: none !important; }
-    html[data-om-style="minimal"] [data-ccard]:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08) !important; }
-    /* Ko'k mavzu: butun sahifa ranglari hue orqali ko'chiriladi */
-    html[data-om-theme="blue"] [data-theme-root] { filter: hue-rotate(118deg) saturate(.94); }
-    html[data-om-theme="blue"] image-slot { filter: hue-rotate(-118deg) saturate(1.06); }
     @keyframes af-pulse { 0%,100% { transform: scaleY(.35); opacity: .55; } 50% { transform: scaleY(1); opacity: 1; } }
-    @keyframes af-rain { from { transform: translateY(-50%); } to { transform: translateY(0); } }
     @keyframes af-scan { 0% { top: -18%; } 100% { top: 118%; } }
     @keyframes af-headscan { from { left: -15%; } to { left: 105%; } }
     @keyframes af-drop { 0% { top: -7px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: calc(100% - 0px); opacity: 0; } }
@@ -74,8 +52,6 @@
     @media (max-width: 1024px) { [data-rs-nav] { display: none !important; } [data-rs-serv] { grid-template-columns: repeat(2, 1fr) !important; } [data-rs-proj] { grid-template-columns: 1fr !important; align-content: center; } }
     @media (max-width: 680px) { [data-rs-serv] { grid-template-columns: 1fr !important; } }
     @media (max-width: 860px) {
-      [data-rs-news] { grid-template-columns: 1fr !important; gap: 14px !important; }
-      [data-rs-news] > span:last-child { display: none; }
       [data-rs-kv] { grid-template-columns: 1fr !important; gap: 6px !important; padding: 18px 0 !important; }
       [data-rs-header] { flex-wrap: wrap; }
     }
@@ -95,7 +71,6 @@
         <a href="#haqimizda" style-hover="color:#29B85D; text-shadow:0 0 12px rgba(41,184,93,.6)">{{ navAbout }}</a>
         <a href="#yonalishlar" style-hover="color:#29B85D; text-shadow:0 0 12px rgba(41,184,93,.6)">{{ navServices }}</a>
         <a href="#loyihalar" style-hover="color:#29B85D; text-shadow:0 0 12px rgba(41,184,93,.6)">{{ navProjects }}</a>
-        <a href="#natijalar" style-hover="color:#29B85D; text-shadow:0 0 12px rgba(41,184,93,.6)">{{ navResults }}</a>
       </nav>
       <div style="display: flex; align-items: center; gap: 12px">
         <span style="display: flex; align-items: center; gap: 8px; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .06em; color: #29B85D; border: 1px solid #2A3126; background: rgba(11,18,10,.8); padding: 8px 12px; border-radius: 2px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #29B85D; box-shadow: 0 0 8px #29B85D; animation: af-blink 1.6s ease-in-out infinite"></span>{{ navStatus }}</span>
@@ -393,7 +368,7 @@
   </section>
 
   <!-- ============ HAMKORLAR ============ -->
-  <section data-screen-label="Hamkorlar" style="background: #F5F5F2; color: #14180F; padding: 0 clamp(16px, 4vw, 56px); border-top: 1px solid #E4E4DD">
+  <section id="mijozlar" data-screen-label="Hamkorlar" style="background: #F5F5F2; color: #14180F; padding: 0 clamp(16px, 4vw, 56px); border-top: 1px solid #E4E4DD">
     <div style="max-width: 1280px; box-sizing: border-box; margin: 0 auto; border-left: 1px solid #E4E4DD; border-right: 1px solid #E4E4DD; padding: 64px 0 60px">
       <div style="padding: 0 clamp(16px, 4vw, 56px)">
         <div data-reveal="" style="display: inline-flex; align-items: center; gap: 8px; background: #101408; color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .1em; padding: 5px 10px"><span style="width: 6px; height: 6px; background: #29B85D; animation: af-blink 1.8s ease-in-out infinite"></span>{{ clients.badge }}</div>
@@ -465,7 +440,7 @@
               <span style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .12em; color: #6B7568">{{ footer.colCompany }}</span>
               <a href="#haqimizda" style-hover="color:#29B85D">{{ footer.c1 }}</a>
               <a href="#loyihalar" style-hover="color:#29B85D">{{ footer.c2 }}</a>
-              <a href="#natijalar" style-hover="color:#29B85D">{{ footer.c3 }}</a>
+              <a href="#mijozlar" style-hover="color:#29B85D">{{ footer.c3 }}</a>
               <a href="#aloqa" style-hover="color:#29B85D">{{ footer.c4 }}</a>
             </div>
             <div style="display: flex; flex-direction: column; gap: 16px; font-size: 18px; color: #B9C0B6">
@@ -505,11 +480,10 @@
 </sc-if>
 
 
-<!-- yatm -->
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { chatStep: 0, p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, typed: '', lang: (typeof localStorage !== 'undefined' && localStorage.getItem('softdata-lang')) || 'UZ' };
+  state = { chatStep: 0, p1: 0, p2: 0, p3: 0, p5: 0, typed: '', lang: (typeof localStorage !== 'undefined' && localStorage.getItem('softdata-lang')) || 'UZ' };
 
   icons = [
     { d1: 'M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', d2: 'M11 18h2' },
@@ -532,10 +506,10 @@ class Component extends DCLogic {
       cta: { badge: 'HAMKORLIK', title: 'Loyihangizni ishonchli jamoaga topshiring', text: 'G‘oyangizni zamonaviy dasturiy yechim va xavfsizlik texnologiyalari bilan hayotga tatbiq etamiz.' },
       clients: { badge: 'MIJOZLAR', title: 'Bizga ishonganlar', text: 'Davlat tashkilotlari va yirik korxonalar SoftData yechimlariga tayanadi.' },
       contact: { badge: 'ALOQA', title: 'Biz bilan bog‘laning', text: 'Loyiha yoki hamkorlik bo‘yicha savollaringiz bo‘lsa — yozing, jamoamiz tez orada javob beradi.', btn: 'XAT YOZISH', webL: 'VEB-SAYT', web: 'softdata.uz', emailL: 'EMAIL', email: 'info@softdata.uz', addrL: 'MANZIL', addr: 'Toshkent shahri' },
-      footer: { tagline: 'Dasturiy yechimlarimiz bilan tanishing.', text: 'Xavfsizlik, kuzatuv va nazorat sohasida ishonchli dasturiy mahsulotlar yaratamiz.', colCompany: 'KOMPANIYA', colServices: 'XIZMATLAR', colInfo: 'MA’LUMOT', c1: 'Biz haqimizda', c2: 'Mahsulotlar', c3: 'Mijozlar', c4: 'Karyera', s1: 'Mobil ilovalar', s2: 'Veb ilovalar', s3: 'Xavfsizlik tizimlari', s4: 'Sun’iy intellekt', i1: 'Yangiliklar', i2: 'Maxfiylik siyosati', i3: 'Foydalanish shartlari', i4: 'Aloqa', addr: 'Toshkent shahri, O‘zbekiston', email: 'info@softdata.uz', web: 'softdata.uz', copyright: '© 2026 SoftData. Barcha huquqlar himoyalangan.', design: 'SoftData jamoasi' },
+      footer: { tagline: 'Dasturiy yechimlarimiz bilan tanishing.', text: 'Xavfsizlik, kuzatuv va nazorat sohasida ishonchli dasturiy mahsulotlar yaratamiz.', colCompany: 'KOMPANIYA', colServices: 'XIZMATLAR', colInfo: 'MA’LUMOT', c1: 'Biz haqimizda', c2: 'Mahsulotlar', c3: 'Mijozlar', c4: 'Karyera', s1: 'Mobil ilovalar', s2: 'Veb ilovalar', s3: 'Xavfsizlik tizimlari', s4: 'Sun’iy intellekt', i2: 'Maxfiylik siyosati', i3: 'Foydalanish shartlari', i4: 'Aloqa', addr: 'Toshkent shahri, O‘zbekiston', email: 'info@softdata.uz', web: 'softdata.uz', copyright: '© 2026 SoftData. Barcha huquqlar himoyalangan.', design: 'SoftData jamoasi' },
       phrases: ["Aqlli parkovka va kirish nazorati", "Video kuzatuv va real vaqt monitoringi", "Sun'iy intellekt asosidagi xavfsizlik", "Mobil va veb ilovalar ishlab chiqish"],
-      nav: { about: 'BIZ HAQIMIZDA', services: 'XIZMATLAR', projects: 'MAHSULOTLAR', results: 'NATIJALAR', news: 'YANGILIKLAR', contact: 'ALOQA', status: 'TIZIM FAOL' },
-      hero: { badge: '// DASTURIY MAHSULOTLAR VA XAVFSIZLIK TIZIMLARI', t1: 'Xavfsizlik va nazoratni', accent: 'raqamli', t2: ' yechimlarga aylantiramiz', sub: "2021-yildan buyon davlat va yirik korxonalar uchun dasturiy ta'minot, xavfsizlik tizimlari, aqlli parkovka hamda kuzatuv va nazorat platformalarini ishlab chiqamiz.", btn1: 'LOYIHALARNI KO‘RISH', btn2: 'HAMKORLIKNI BOSHLASH' },
+      nav: { about: 'BIZ HAQIMIZDA', services: 'XIZMATLAR', projects: 'MAHSULOTLAR', contact: 'ALOQA', status: 'TIZIM FAOL' },
+      hero: { badge: '// DASTURIY MAHSULOTLAR VA XAVFSIZLIK TIZIMLARI', t1: 'Xavfsizlik va nazoratni', accent: 'raqamli', t2: ' yechimlarga aylantiramiz', btn1: 'LOYIHALARNI KO‘RISH', btn2: 'HAMKORLIKNI BOSHLASH' },
       chat: { label: 'SoftData AI', live: 'JONLI', u1: 'Salom! Ofisimizga VIP Parking tizimini o‘rnatmoqchimiz.', bot: 'Kamera avtomobil raqamini avtomatik taniydi, shlagbaum o‘zi ochiladi va kirish-chiqish real vaqtda nazoratda bo‘ladi. Demo ko‘rsataymi?', u2: 'Ha, albatta. Rahmat!' },
       services: [
         { t: 'Mobil ilovalar', d: 'iOS va Android uchun tez, xavfsiz va qulay mobil ilovalar.' },
@@ -549,11 +523,6 @@ class Component extends DCLogic {
         { n: 'VIP Parking', tag: 'PARKOVKA', d: 'Avtomobil raqamini avtomatik taniydigan aqlli parkovka va kirish-chiqish nazorati tizimi.' },
         { n: 'SoftData AIS', tag: 'PLATFORMA', d: 'Xavfsizlik va nazorat jarayonlarini yagona oynada boshqaruvchi axborot-tahlil tizimi.' },
         { n: 'SoftData GPS', tag: 'KUZATUV', d: 'Transport vositalarini real vaqtda kuzatish va yo‘l tarixini tahlil qiluvchi GPS monitoring tizimi.' }
-      ],
-      news: [
-        { date: '05.2026', label: 'VIP Parking', title: "VIP Parking Uzbekistan Airports'da ishga tushdi", desc: 'Aeroport hududida avtomobil raqamini avtomatik taniydigan aqlli parkovka tizimi joriy etildi.', bg: 'radial-gradient(130% 160% at 30% 120%, rgba(120,240,90,.65), rgba(30,90,22,.45) 45%, #040604 78%)' },
-        { date: '04.2026', label: 'Xavfsizlik', title: 'Video kuzatuv platformasi yangilandi', desc: "Sun'iy intellekt asosidagi hodisa aniqlash moduli yangi versiyaga o‘tkazildi.", bg: 'radial-gradient(130% 160% at 60% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' },
-        { date: '03.2026', label: 'Hamkorlik', title: 'Bank sektori uchun monitoring yechimi', desc: 'Filiallar xavfsizligini markazlashgan nazorat qiluvchi yangi modul ishga tushirildi.', bg: 'radial-gradient(130% 160% at 45% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' }
       ]
     },
     ru: {
@@ -565,10 +534,10 @@ class Component extends DCLogic {
       cta: { badge: 'СОТРУДНИЧЕСТВО', title: 'Доверьте проект надёжной команде', text: 'Воплотим вашу идею с помощью современных программных решений и технологий безопасности.' },
       clients: { badge: 'КЛИЕНТЫ', title: 'Нам доверяют', text: 'Государственные организации и крупный бизнес полагаются на решения SoftData.' },
       contact: { badge: 'КОНТАКТ', title: 'Свяжитесь с нами', text: 'Есть вопросы по проекту или сотрудничеству — напишите, команда ответит в ближайшее время.', btn: 'НАПИСАТЬ', webL: 'ВЕБ-САЙТ', web: 'softdata.uz', emailL: 'EMAIL', email: 'info@softdata.uz', addrL: 'АДРЕС', addr: 'город Ташкент' },
-      footer: { tagline: 'Познакомьтесь с нашими решениями.', text: 'Создаём надёжные программные продукты в сфере безопасности, видеонаблюдения и контроля.', colCompany: 'КОМПАНИЯ', colServices: 'УСЛУГИ', colInfo: 'ИНФОРМАЦИЯ', c1: 'О нас', c2: 'Проекты', c3: 'Клиенты', c4: 'Карьера', s1: 'Мобильные приложения', s2: 'Веб-приложения', s3: 'Системы безопасности', s4: 'Искусственный интеллект', i1: 'Новости', i2: 'Политика конфиденциальности', i3: 'Условия использования', i4: 'Контакт', addr: 'город Ташкент, Узбекистан', email: 'info@softdata.uz', web: 'softdata.uz', copyright: '© 2026 SoftData. Все права защищены.', design: 'команда SoftData' },
+      footer: { tagline: 'Познакомьтесь с нашими решениями.', text: 'Создаём надёжные программные продукты в сфере безопасности, видеонаблюдения и контроля.', colCompany: 'КОМПАНИЯ', colServices: 'УСЛУГИ', colInfo: 'ИНФОРМАЦИЯ', c1: 'О нас', c2: 'Проекты', c3: 'Клиенты', c4: 'Карьера', s1: 'Мобильные приложения', s2: 'Веб-приложения', s3: 'Системы безопасности', s4: 'Искусственный интеллект', i2: 'Политика конфиденциальности', i3: 'Условия использования', i4: 'Контакт', addr: 'город Ташкент, Узбекистан', email: 'info@softdata.uz', web: 'softdata.uz', copyright: '© 2026 SoftData. Все права защищены.', design: 'команда SoftData' },
       phrases: ['Умная парковка и контроль доступа', 'Видеонаблюдение и мониторинг в реальном времени', 'Безопасность на основе ИИ', 'Разработка мобильных и веб-приложений'],
-      nav: { about: 'О НАС', services: 'УСЛУГИ', projects: 'ПРОДУКТЫ', results: 'РЕЗУЛЬТАТЫ', news: 'НОВОСТИ', contact: 'КОНТАКТ', status: 'СИСТЕМА АКТИВНА' },
-      hero: { badge: '// ПРОГРАММНЫЕ ПРОДУКТЫ И СИСТЕМЫ БЕЗОПАСНОСТИ', t1: 'Превращаем безопасность и', accent: 'контроль в цифровые', t2: ' решения', sub: 'С 2021 года разрабатываем ПО, системы безопасности, умную парковку и платформы видеонаблюдения для государства и крупного бизнеса.', btn1: 'СМОТРЕТЬ ПРОЕКТЫ', btn2: 'НАЧАТЬ СОТРУДНИЧЕСТВО' },
+      nav: { about: 'О НАС', services: 'УСЛУГИ', projects: 'ПРОДУКТЫ', contact: 'КОНТАКТ', status: 'СИСТЕМА АКТИВНА' },
+      hero: { badge: '// ПРОГРАММНЫЕ ПРОДУКТЫ И СИСТЕМЫ БЕЗОПАСНОСТИ', t1: 'Превращаем безопасность и', accent: 'контроль в цифровые', t2: ' решения', btn1: 'СМОТРЕТЬ ПРОЕКТЫ', btn2: 'НАЧАТЬ СОТРУДНИЧЕСТВО' },
       chat: { label: 'SoftData AI', live: 'ОНЛАЙН', u1: 'Здравствуйте! Хотим установить систему VIP Parking в офисе.', bot: 'Камера автоматически распознаёт номер, шлагбаум открывается сам, а весь въезд-выезд под контролем в реальном времени. Показать демо?', u2: 'Да, конечно. Спасибо!' },
       services: [
         { t: 'Мобильные приложения', d: 'Быстрые, безопасные и удобные приложения для iOS и Android.' },
@@ -582,11 +551,6 @@ class Component extends DCLogic {
         { n: 'VIP Parking', tag: 'ПАРКОВКА', d: 'Умная парковка с автоматическим распознаванием номеров и контролем въезда-выезда.' },
         { n: 'SoftData AIS', tag: 'ПЛАТФОРМА', d: 'Информационно-аналитическая система управления безопасностью в едином окне.' },
         { n: 'SoftData GPS', tag: 'МОНИТОРИНГ', d: 'Система GPS-мониторинга для отслеживания транспорта в реальном времени и анализа маршрутов.' }
-      ],
-      news: [
-        { date: '05.2026', label: 'VIP Parking', title: 'VIP Parking запущен в Uzbekistan Airports', desc: 'На территории аэропорта внедрена умная парковка с автоматическим распознаванием номеров.', bg: 'radial-gradient(130% 160% at 30% 120%, rgba(120,240,90,.65), rgba(30,90,22,.45) 45%, #040604 78%)' },
-        { date: '04.2026', label: 'Безопасность', title: 'Платформа видеонаблюдения обновлена', desc: 'Модуль детекции событий на базе ИИ переведён на новую версию.', bg: 'radial-gradient(130% 160% at 60% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' },
-        { date: '03.2026', label: 'Партнёрство', title: 'Решение мониторинга для банков', desc: 'Запущен новый модуль централизованного контроля безопасности филиалов.', bg: 'radial-gradient(130% 160% at 45% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' }
       ]
     },
     en: {
@@ -598,10 +562,10 @@ class Component extends DCLogic {
       cta: { badge: 'PARTNERSHIP', title: 'Hand your project to a team you can trust', text: 'We bring your idea to life with modern software solutions and security technology.' },
       clients: { badge: 'CLIENTS', title: 'Trusted by', text: 'Government organizations and large enterprises rely on SoftData solutions.' },
       contact: { badge: 'CONTACT', title: 'Get in touch', text: 'Have a question about a project or partnership — write to us and our team will reply shortly.', btn: 'WRITE TO US', webL: 'WEBSITE', web: 'softdata.uz', emailL: 'EMAIL', email: 'info@softdata.uz', addrL: 'ADDRESS', addr: 'Tashkent' },
-      footer: { tagline: 'Explore our solutions.', text: 'We build reliable software products for security, surveillance and control.', colCompany: 'COMPANY', colServices: 'SERVICES', colInfo: 'INFORMATION', c1: 'About', c2: 'Projects', c3: 'Clients', c4: 'Careers', s1: 'Mobile apps', s2: 'Web apps', s3: 'Security systems', s4: 'Artificial intelligence', i1: 'News', i2: 'Privacy policy', i3: 'Terms of use', i4: 'Contact', addr: 'Tashkent, Uzbekistan', email: 'info@softdata.uz', web: 'softdata.uz', copyright: '© 2026 SoftData. All rights reserved.', design: 'SoftData team' },
+      footer: { tagline: 'Explore our solutions.', text: 'We build reliable software products for security, surveillance and control.', colCompany: 'COMPANY', colServices: 'SERVICES', colInfo: 'INFORMATION', c1: 'About', c2: 'Projects', c3: 'Clients', c4: 'Careers', s1: 'Mobile apps', s2: 'Web apps', s3: 'Security systems', s4: 'Artificial intelligence', i2: 'Privacy policy', i3: 'Terms of use', i4: 'Contact', addr: 'Tashkent, Uzbekistan', email: 'info@softdata.uz', web: 'softdata.uz', copyright: '© 2026 SoftData. All rights reserved.', design: 'SoftData team' },
       phrases: ['Smart parking and access control', 'Video surveillance and real-time monitoring', 'AI-powered security', 'Mobile and web app development'],
-      nav: { about: 'ABOUT', services: 'SERVICES', projects: 'PRODUCTS', results: 'RESULTS', news: 'NEWS', contact: 'CONTACT', status: 'SYSTEM ONLINE' },
-      hero: { badge: '// SOFTWARE PRODUCTS & SECURITY SYSTEMS', t1: 'We turn security and control', accent: 'into digital', t2: ' solutions', sub: 'Since 2021 we build software, security systems, smart parking and surveillance platforms for government and enterprise.', btn1: 'VIEW PROJECTS', btn2: 'START A PROJECT' },
+      nav: { about: 'ABOUT', services: 'SERVICES', projects: 'PRODUCTS', contact: 'CONTACT', status: 'SYSTEM ONLINE' },
+      hero: { badge: '// SOFTWARE PRODUCTS & SECURITY SYSTEMS', t1: 'We turn security and control', accent: 'into digital', t2: ' solutions', btn1: 'VIEW PROJECTS', btn2: 'START A PROJECT' },
       chat: { label: 'SoftData AI', live: 'LIVE', u1: "Hi! We'd like to install the VIP Parking system at our office.", bot: 'The camera reads the plate automatically, the barrier opens on its own, and every entry is monitored in real time. Shall I show a demo?', u2: 'Yes, please. Thanks!' },
       services: [
         { t: 'Mobile apps', d: 'Fast, secure and user-friendly apps for iOS and Android.' },
@@ -615,11 +579,6 @@ class Component extends DCLogic {
         { n: 'VIP Parking', tag: 'PARKING', d: 'Smart parking with automatic plate recognition and entry-exit control.' },
         { n: 'SoftData AIS', tag: 'PLATFORM', d: 'An information-analytics system that manages security and control in one window.' },
         { n: 'SoftData GPS', tag: 'TRACKING', d: 'A GPS monitoring system for real-time vehicle tracking and route history analysis.' }
-      ],
-      news: [
-        { date: '05.2026', label: 'VIP Parking', title: 'VIP Parking goes live at Uzbekistan Airports', desc: 'Smart parking with automatic plate recognition was deployed across the airport.', bg: 'radial-gradient(130% 160% at 30% 120%, rgba(120,240,90,.65), rgba(30,90,22,.45) 45%, #040604 78%)' },
-        { date: '04.2026', label: 'Security', title: 'Surveillance platform updated', desc: 'The AI-based event-detection module was upgraded to a new version.', bg: 'radial-gradient(130% 160% at 60% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' },
-        { date: '03.2026', label: 'Partnership', title: 'Monitoring solution for banks', desc: 'A new module for centralised branch-security monitoring went live.', bg: 'radial-gradient(130% 160% at 45% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' }
       ]
     }
   };
@@ -630,12 +589,7 @@ class Component extends DCLogic {
     { code: 'EN', label: 'ENGLISH' }
   ];
 
-  applyTheme() {
-    document.documentElement.setAttribute('data-om-theme', 'green');
-    document.documentElement.setAttribute('data-om-style', 'cyber');
-  }
-
-  componentDidUpdate() { this.applyTheme(); requestAnimationFrame(() => { this.setupCyber(); }); }
+  componentDidUpdate() { requestAnimationFrame(() => { this.setupCyber(); }); }
 
   setupHeroBg() {
     const cv = document.getElementById('hero-cyber');
@@ -742,15 +696,12 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
-    this.applyTheme();
-
     // til menyusi: tashqariga bosilganda yopiladi
     this._langOutside = (e) => {
       if (this.state.langOpen) this.setState({ langOpen: false });
     };
     document.addEventListener('click', this._langOutside);
     this.setupCyber();
-    this.setupMinimal();
   }
 
   // Cyber shablonining scroll/animatsiya bog'lamalari — shablon almashganda qayta ulanadi
@@ -884,44 +835,6 @@ class Component extends DCLogic {
     this._countFinal = setTimeout(() => this.setState({ p1: 6, p2: 10, p3: 5, p5: 99.9 }), dur + 250);
   }
 
-  services = [
-    { num: '01', title: 'Raqamli transformatsiya', desc: "Davlat organlari va tashkilotlarining biznes jarayonlarini raqamlashtirish hamda optimallashtirish.",
-      d1: 'M21 12a9 9 0 1 1-2.6-6.4', d2: 'M21 3v5h-5' },
-    { num: '02', title: 'Axborot tizimlari', desc: "Yagona platformalar, ERP, CRM tizimlari va davlat reyestrlarini ishlab chiqish.",
-      d1: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z', d2: 'M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3' },
-    { num: '03', title: "Sun'iy intellekt", desc: "AI asosidagi tahliliy tizimlar, chatbotlar va avtomatlashtirilgan xizmatlar.",
-      d1: 'M8 8h8v8H8z', d2: 'M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3' },
-    { num: '04', title: 'Kiberxavfsizlik', desc: "Davlat axborot resurslarini himoya qilish va uzluksiz monitoring yuritish.",
-      d1: 'M12 3l7 3v6c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6l7-3z', d2: 'M9 12l2 2 4-4' },
-    { num: '05', title: "Ma'lumotlar markazi", desc: "Bulutli infratuzilma va server resurslarini ishonchli boshqarish.",
-      d1: 'M4 5h16v6H4zM4 13h16v6H4z', d2: 'M7 8h.01M7 16h.01M12 8h5M12 16h5' },
-    { num: '06', title: 'Mobil va veb platformalar', desc: "Fuqarolar va biznes uchun zamonaviy, qulay raqamli xizmatlar.",
-      d1: 'M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', d2: 'M11 18h2' }
-  ];
-
-  projects = [
-    { name: 'Openbudget', tag: 'BYUDJET', desc: "Davlat byudjeti sarfini oshkora ko'rsatuvchi va fuqarolar ishtirokida loyihalarni tanlash imkonini beruvchi platforma." },
-    { name: 'UzAsbo-2', tag: 'HISOB', desc: "Byudjet tashkilotlari uchun byudjet hisobi va hisobotini avtomatlashtiruvchi axborot tizimi." },
-    { name: 'Moliyachi', tag: 'SUPER-APP', desc: "Fuqarolar uchun maosh, soliq, subsidiya va kreditlarni boshqarish imkonini beruvchi yagona moliyaviy ilova." },
-    { name: 'Bank resurs', tag: 'MONITORING', desc: "Kreditlar, imtiyozli dasturlar va ssudalarni yagona oynada kuzatish platformasi." },
-    { name: "Ta'lim krediti", tag: "TA'LIM", desc: "Talabalarning o'qish xarajatlarini qoplashga mo'ljallangan, davlat qo'llab-quvvatlaydigan imtiyozli kredit xizmati." },
-    { name: 'DXMAP', tag: 'XARIDLAR', desc: "Davlat xaridlari axborotini elektron yuritish va tizimlararo integratsiyani ta'minlovchi tizim." },
-    { name: 'Subsidiya', tag: 'IJTIMOIY', desc: "Subsidiya, kompensatsiya va imtiyozlarga ariza berish hamda ularni kuzatish platformasi." },
-    { name: 'SSO', tag: 'AVTORIZATSIYA', desc: "Bitta kirish orqali bir nechta davlat tizimlaridan foydalanish imkonini beruvchi yagona avtorizatsiya tizimi." },
-    { name: "Ichki yo'llar", tag: 'INFRATUZILMA', desc: "Yo'l-infratuzilma loyihalarini hisobga olish va monitoring qilish uchun axborot tizimi." }
-  ].map((p, i) => ({
-    ...p,
-    num: String(i + 1).padStart(2, '0'),
-    plx: 22 + (i % 3) * 16,
-    bg: `radial-gradient(130% 160% at ${25 + (i % 3) * 25}% 120%, rgba(120,240,90,.65), rgba(30,90,22,.45) 45%, #040604 78%)`
-  }));
-
-  news = [
-    { date: '18.05.2026', label: 'Yagona platforma', title: "Yangi davlat platformasi foydalanishga topshirildi", desc: "Tashkilotlar o'rtasida ma'lumot almashinuvini soddalashtiruvchi zamonaviy raqamli platforma muvaffaqiyatli ishga tushirildi.", bg: 'radial-gradient(130% 160% at 30% 120%, rgba(120,240,90,.65), rgba(30,90,22,.45) 45%, #040604 78%)' },
-    { date: '11.05.2026', label: 'Yangi loyiha', title: "Raqamli transformatsiya bo'yicha yangi loyiha boshlandi", desc: "Davlat xizmatlarini yanada samarali ko'rsatishga qaratilgan yangi axborot tizimini ishlab chiqish ishlari boshlandi.", bg: 'radial-gradient(130% 160% at 60% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' },
-    { date: '02.05.2026', label: 'AI xizmatlar', title: "Sun'iy intellekt asosidagi xizmatlar joriy qilindi", desc: "Murojaatlarni tezkor qayta ishlash va xizmatlar sifatini oshirish uchun AI texnologiyalariga asoslangan yechimlar ishga tushirildi.", bg: 'radial-gradient(130% 160% at 45% 120%, rgba(120,240,90,.6), rgba(30,90,22,.42) 45%, #040604 78%)' }
-  ];
-
   ctaDotsEl() {
     if (this._dots) return this._dots;
     const dots = [];
@@ -987,9 +900,8 @@ class Component extends DCLogic {
       st5: s.p5.toFixed(1) + '%',
       services: services,
       projects: projects,
-      news: c.news,
-      navAbout: c.nav.about, navServices: c.nav.services, navProjects: c.nav.projects, navResults: c.nav.results, navNews: c.nav.news, navContact: c.nav.contact, navStatus: c.nav.status,
-      heroBadge: c.hero.badge, heroT1: c.hero.t1, heroAccent: c.hero.accent, heroT2: c.hero.t2, heroSub: c.hero.sub, heroBtn1: c.hero.btn1, heroBtn2: c.hero.btn2,
+      navAbout: c.nav.about, navServices: c.nav.services, navProjects: c.nav.projects, navContact: c.nav.contact, navStatus: c.nav.status,
+      heroBadge: c.hero.badge, heroT1: c.hero.t1, heroAccent: c.hero.accent, heroT2: c.hero.t2, heroBtn1: c.hero.btn1, heroBtn2: c.hero.btn2,
       chatLabel: c.chat.label, chatLive: c.chat.live, chatU1: c.chat.u1, chatBot: c.chat.bot, chatU2: c.chat.u2,
       decor: c.decor, stats: c.stats, about: c.about, serv: c.serv, proj: c.proj, cta: c.cta, clients: c.clients, contact: c.contact, footer: c.footer,
       ctaDots: this.ctaDotsEl()
