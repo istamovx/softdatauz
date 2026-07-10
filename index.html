@@ -44,14 +44,17 @@
     [data-ccard]:hover::before, [data-ccard]:hover::after { opacity: 1; transform: translate(0, 0); }
     [data-ccard]:hover { box-shadow: 0 0 0 1px rgba(41,184,93,.5), 0 16px 44px rgba(60,140,40,.16); }
     [data-testi-card] { flex: 0 0 calc((100% - 36px) / 3); box-sizing: border-box; }
+    [data-team-card] { flex: 0 0 calc((100% - 54px) / 4); }
     @media (max-width: 1160px) { [data-rs-decor] { display: none; } }
     @media (max-width: 1060px) {
       [data-rs-footgrid] { grid-template-columns: 1fr !important; }
       [data-rs-footgrid] > div { border-left: none !important; padding-left: 0 !important; padding-right: 0 !important; }
       [data-rs-footcontact] { text-align: left !important; align-items: flex-start !important; }
     }
-    @media (max-width: 1024px) { [data-rs-nav] { display: none !important; } [data-rs-serv] { grid-template-columns: repeat(2, 1fr) !important; } [data-rs-proj] { grid-template-columns: 1fr !important; align-content: center; } [data-testi-card] { flex-basis: calc((100% - 18px) / 2) !important; } }
-    @media (max-width: 680px) { [data-rs-serv] { grid-template-columns: 1fr !important; } [data-testi-card] { flex-basis: 100% !important; } }
+    @media (max-width: 1024px) { [data-rs-nav] { display: none !important; } [data-rs-serv] { grid-template-columns: repeat(2, 1fr) !important; } [data-testi-card] { flex-basis: calc((100% - 18px) / 2) !important; } [data-team-card] { flex-basis: calc((100% - 36px) / 3) !important; } }
+    @media (max-width: 900px) { [data-rs-projrow] { grid-template-columns: 1fr !important; } [data-rs-projrow] > div:last-child { order: -1; } }
+    @media (max-width: 680px) { [data-rs-serv] { grid-template-columns: 1fr !important; } [data-testi-card] { flex-basis: 100% !important; } [data-team-card] { flex-basis: calc((100% - 18px) / 2) !important; } }
+    @media (max-width: 480px) { [data-team-card] { flex-basis: 100% !important; } }
     @media (max-width: 860px) {
       [data-rs-kv] { grid-template-columns: 1fr !important; gap: 6px !important; padding: 18px 0 !important; }
       [data-rs-header] { flex-wrap: wrap; }
@@ -226,6 +229,74 @@
     </div>
   </section>
 
+  <!-- ============ JAMOA ============ -->
+  <section id="jamoa" data-screen-label="Jamoa" style="background: #F5F5F2; color: #14180F; padding: 0 clamp(16px, 4vw, 56px); border-top: 1px solid #E4E4DD">
+    <div style="max-width: 1280px; box-sizing: border-box; margin: 0 auto; border-left: 1px solid #E4E4DD; border-right: 1px solid #E4E4DD; padding: clamp(48px, 8vw, 90px) clamp(16px, 4vw, 56px) clamp(56px, 9vw, 100px)">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap">
+        <div style="max-width: 620px">
+          <div data-reveal="" style="display: inline-flex; align-items: center; gap: 8px; background: #101408; color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .1em; padding: 5px 10px"><span style="width: 6px; height: 6px; background: #29B85D; animation: af-blink 1.8s ease-in-out infinite"></span>{{ team.badge }}</div>
+          <h2 data-reveal="" style="margin: 22px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: clamp(30px, 4.5vw, 42px); line-height: 1.15; letter-spacing: -0.01em">{{ team.title }}</h2>
+        </div>
+        <p data-reveal="" style="margin: 0; max-width: 400px; font-size: 18px; line-height: 1.6; color: #55604F">{{ team.text }}</p>
+      </div>
+
+      <div id="team-wrap" data-reveal="" style="position: relative; margin-top: 52px">
+        <div style="overflow: hidden">
+          <div id="team-track" style="display: flex; gap: 18px">
+            <sc-for list="{{ teamItems }}" as="m" hint-placeholder-count="5">
+              <div data-team-card="" style="position: relative; display: flex; flex-direction: column; border: 1px solid #E4E4DD; background: #fff; overflow: hidden; box-sizing: border-box">
+                <div style="display: flex; align-items: center; gap: 8px; background: #101408; padding: 9px 14px">
+                  <span style="width: 6px; height: 6px; flex: none; background: #29B85D; animation: af-blink 1.8s ease-in-out infinite"></span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; letter-spacing: .06em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ m.dept }}</span>
+                </div>
+                <div style="position: relative; height: clamp(240px, 24vw, 340px); overflow: hidden; background: #E4E4DD">
+                  <sc-if value="{{ m.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                    <img src="{{ m.photo }}" alt="{{ m.name }}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+                  </sc-if>
+                  <sc-if value="{{ m.noPhoto }}" hint-placeholder-val="{{ true }}">
+                    <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ m.photoId }}" shape="rect" placeholder="{{ m.name }} surati" hint-size="100%,340px"></x-import>
+                  </sc-if>
+                </div>
+                <div style="padding: 18px 20px 20px">
+                  <div style="display: flex; align-items: center; gap: 7px">
+                    <h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 22px; letter-spacing: -0.01em">{{ m.name }}</h3>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#29B85D" style="flex: none"><path d="M12 2l2.4 1.1 2.6-.4 1.4 2.3 2.3 1.4-.4 2.6L21.4 11l-1.1 2.4.4 2.6-2.3 1.4-1.4 2.3-2.6-.4L12 21l-2.4-1.1-2.6.4-1.4-2.3-2.3-1.4.4-2.6L2.6 11l1.1-2.4-.4-2.6 2.3-1.4L7 2.9l2.6.4L12 2z"></path><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </div>
+                  <p style="margin: 4px 0 0; font-size: 18px; color: #55604F">{{ m.role }}</p>
+                  <div style="height: 1px; background: #E4E4DD; margin: 16px 0"></div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+                    <div style="display: flex; align-items: flex-end; gap: 3px">
+                      <span style="width: 4px; height: 8px; background: #101408"></span>
+                      <span style="width: 4px; height: 12px; background: #101408"></span>
+                      <span style="width: 4px; height: 16px; background: #29B85D"></span>
+                      <span style="width: 4px; height: 10px; background: #D9DCD2"></span>
+                      <span style="width: 4px; height: 6px; background: #D9DCD2"></span>
+                    </div>
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; letter-spacing: .04em; color: #8B948A; white-space: nowrap">{{ m.location }}</span>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 30px; flex-wrap: wrap">
+          <div style="display: flex; align-items: center; gap: 18px; flex: 1; min-width: 220px">
+            <button id="team-prev" aria-label="Oldingi" style="display: flex; align-items: center; justify-content: center; flex: none; width: 44px; height: 44px; border: 1px solid #C9CDC2; background: #EFEFEA; color: #55604F; cursor: pointer; transition: color .2s, border-color .2s" style-hover="border-color:#29B85D; color:#29B85D">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+            </button>
+            <div style="flex: 1; height: 2px; background: #E4E4DD; position: relative">
+              <div id="team-progress" style="height: 100%; width: 0%; background: linear-gradient(90deg, #3E7A22, #29B85D)"></div>
+            </div>
+            <button id="team-next" aria-label="Keyingi" style="display: flex; align-items: center; justify-content: center; flex: none; width: 44px; height: 44px; border: 1px solid #C9CDC2; background: #EFEFEA; color: #55604F; cursor: pointer; transition: color .2s, border-color .2s" style-hover="border-color:#29B85D; color:#29B85D">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+            </button>
+          </div>
+          <a href="#aloqa" data-cbtn="" style="display: flex; align-items: center; gap: 10px; background: #101408; padding: 12px 22px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .06em; font-weight: 500; color: #fff" style-hover="background:#1E3A12">{{ team.cta }} ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FAOLIYAT ============ -->
   <section id="yonalishlar" data-screen-label="Faoliyat yo'nalishlari" style="position: relative; background: #030503; padding: clamp(48px, 8vw, 100px) clamp(16px, 4vw, 56px) clamp(56px, 9vw, 110px); overflow: hidden">
     <div style="position: absolute; inset: -20%; pointer-events: none; filter: blur(60px); opacity: .8">
@@ -270,53 +341,33 @@
 
   <!-- ============ MAHSULOTLAR ============ -->
   <section id="loyihalar" data-screen-label="Mahsulotlar" style="background: #F5F5F2; color: #14180F; padding: 0 clamp(16px, 4vw, 56px)">
-    <div style="max-width: 1280px; box-sizing: border-box; margin: 0 auto; border-left: 1px solid #E4E4DD; border-right: 1px solid #E4E4DD; padding: 0 clamp(16px, 4vw, 56px)">
-      <div id="proj-wrap" style="height: calc(100vh + 2400px)">
-        <div style="position: sticky; top: 0; height: 100vh; box-sizing: border-box; padding: 120px 0; display: flex; align-items: center">
-        <div data-rs-proj="" style="display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: clamp(24px, 3.5vw, 64px); width: 100%; align-items: center">
-          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
-            <div>
-              <div data-reveal="" style="display: inline-flex; align-items: center; gap: 8px; background: #101408; color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .1em; padding: 5px 10px"><span style="width: 6px; height: 6px; background: #29B85D; animation: af-blink 1.8s ease-in-out infinite"></span>{{ proj.badge }}</div>
-              <h2 data-reveal="" style="margin: 16px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: clamp(28px, 3.5vw, 40px); line-height: 1.15">{{ proj.title }}</h2>
-            </div>
-            <p data-reveal="" style="margin: 0; max-width: 520px; font-size: 18px; line-height: 1.55; color: #55604F">{{ proj.text }}</p>
-            <a data-reveal="" href="#loyihalar" data-cbtn="" style="display: flex; align-items: center; margin-top: 10px; padding: 12px 24px; border: 1px solid #B9C0B6; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .08em; font-weight: 500; color: #14180F" style-hover="border-color:#3E7A22; color:#1E3A12; background:#EFF7E6">{{ proj.all }}</a>
-          </div>
-          <div style="min-width: 0">
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .06em; color: #55604F">
-            <span>{{ proj.scroll }}</span>
-            <span style="display: flex; align-items: center; gap: 8px; color: #3E7A22"><span style="width: 7px; height: 7px; border-radius: 50%; background: #3E7A22; animation: af-blink 1.5s ease-in-out infinite"></span>{{ proj.count }}</span>
-          </div>
-          <div style="overflow: hidden; padding: 8px 0">
-            <div id="proj-track" style="display: flex; gap: 20px; width: max-content; will-change: transform">
-              <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
-                <div data-ccard="" style="position: relative; flex: none; width: min(380px, 78vw); display: flex; flex-direction: column; background: #fff; border: 1px solid #E4E4DD; border-top: 2px solid #101408; padding: 24px 26px 22px; transition: transform .3s, border-color .3s" style-hover="transform:translateY(-6px); border-top-color:#29B85D">
-                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .06em">
-                    <span style="color: #3E7A22; white-space: nowrap">[ {{ p.num }} ]</span>
-                    <span style="color: #55604F; border: 1px solid #C9CDC2; background: #EFEFEA; padding: 3px 9px; white-space: nowrap">{{ p.tag }}</span>
-                  </div>
-                  <h3 style="margin: 20px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 27px; letter-spacing: -0.01em">{{ p.name }}</h3>
-                  <div style="width: 46px; height: 3px; background: linear-gradient(90deg, #29B85D, rgba(41,184,93,.15)); margin-top: 12px"></div>
-                  <p style="margin: 14px 0 0; font-size: 18px; line-height: 1.6; color: #55604F">{{ p.desc }}</p>
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 24px; border-top: 1px dashed #D9DCD2; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .06em; color: #8B948A">
-                    <span>// {{ p.tag }}</span>
-                    <a href="{{ p.href }}" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #101408; color: #29B85D; font-size: 19px" style-hover="background:#1E3A12; color:#3ED47A">↣</a>
-                  </div>
-                </div>
-              </sc-for>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 18px; margin-top: 26px">
-            <span style="white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .06em; color: #3E7A22"><span id="proj-count">01</span> / 03</span>
-            <div style="flex: 1; height: 2px; background: #E4E4DD; position: relative">
-              <div id="proj-progress" style="height: 100%; width: 0%; background: linear-gradient(90deg, #3E7A22, #29B85D)"></div>
-            </div>
-          </div>
-          </div>
+    <div style="max-width: 1280px; box-sizing: border-box; margin: 0 auto; border-left: 1px solid #E4E4DD; border-right: 1px solid #E4E4DD; padding: clamp(48px, 8vw, 90px) clamp(16px, 4vw, 56px) 0">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; padding-bottom: clamp(32px, 5vw, 48px); border-bottom: 1px solid #E4E4DD">
+        <div style="max-width: 620px">
+          <div data-reveal="" style="display: inline-flex; align-items: center; gap: 8px; background: #101408; color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .1em; padding: 5px 10px"><span style="width: 6px; height: 6px; background: #29B85D; animation: af-blink 1.8s ease-in-out infinite"></span>{{ proj.badge }}</div>
+          <h2 data-reveal="" style="margin: 22px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: clamp(32px, 4.5vw, 48px); line-height: 1.12; letter-spacing: -0.01em">{{ proj.title }}</h2>
         </div>
-        </div>
+        <p data-reveal="" style="margin: 0; max-width: 400px; font-size: 18px; line-height: 1.6; color: #55604F">{{ proj.text }}</p>
       </div>
 
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <div data-reveal="" data-rs-projrow="" style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: center; padding: clamp(36px, 5vw, 56px) 0; border-bottom: 1px solid #E4E4DD">
+          <div>
+            <h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: clamp(26px, 3vw, 34px); letter-spacing: -0.01em">{{ p.name }}</h3>
+            <p style="margin: 14px 0 0; max-width: 520px; font-size: 18px; line-height: 1.6; color: #55604F">{{ p.desc }}</p>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 26px">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; letter-spacing: .04em; color: #fff; background: #101408; padding: 5px 10px">#{{ p.tag }}</span>
+              <a href="{{ p.href }}" style="display: flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .04em; color: #14180F; border-bottom: 1px solid #B9C0B6; padding-bottom: 2px" style-hover="color:#3E7A22; border-color:#3E7A22">{{ proj.more }} ↗</a>
+            </div>
+          </div>
+          <div style="position: relative">
+            <span style="position: absolute; top: 14px; left: 14px; z-index: 2; font-family: 'IBM Plex Mono', monospace; font-size: 16px; letter-spacing: .04em; color: #14180F; background: #fff; padding: 4px 9px; border: 1px solid #E4E4DD">{{ p.num }}</span>
+            <div style="position: relative; height: clamp(220px, 26vw, 320px); overflow: hidden; border: 1px solid #E4E4DD">
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.photoId }}" shape="rect" placeholder="{{ p.name }} mahsuloti surati" hint-size="100%,320px"></x-import>
+            </div>
+          </div>
+        </div>
+      </sc-for>
     </div>
   </section>
 
@@ -559,8 +610,9 @@ class Component extends DCLogic {
       stats: { l1: 'yakunlangan yirik loyiha', l2: 'davlat va korporativ mijoz', l3: 'mahsulot yo‘nalishi', l4: 'uzluksiz monitoring', l5: 'tizim uzluksizligi', cl1: 'yakunlangan loyiha', cl2: 'mahsulot yo‘nalishi', cl3: 'doimiy mijoz', cl4: 'tizim barqarorligi' },
       about: { badge: 'BIZ HAQIMIZDA', title: 'Ishonchli dasturiy yechimlar bilan 2021-yildan buyon', text: 'SoftData — dasturiy mahsulotlar, xavfsizlik tizimlari, aqlli parkovka hamda kuzatuv va nazorat platformalarini ishlab chiquvchi texnologiya kompaniyasi. 2021-yilda tashkil etilganimizdan buyon davlat organlari va yirik korxonalar uchun 6 dan ortiq yirik loyihani muvaffaqiyatli amalga oshirdik.', more: 'BATAFSIL ⇣', mLabel: 'MISSIYA', mText: 'Zamonaviy dasturiy ta’minot va sun’iy intellekt asosidagi xavfsizlik yechimlari orqali tashkilotlar faoliyatini xavfsiz, shaffof va samarali qilish.', vLabel: 'VIZYON', vText: 'Xavfsizlik va nazorat texnologiyalarida mintaqadagi yetakchi dasturiy mahsulotlar ishlab chiquvchisiga aylanish.', file: 'JAMOA.JPG', wait: 'KUTILMOQDA' },
       serv: { badge: 'XIZMATLAR', title: 'Biznes va davlat uchun to‘liq dasturiy yechimlar', sub: 'Mobil va veb ilovalardan tortib xavfsizlik, sun’iy intellekt va aqlli parkovka tizimlarigacha — bir joyda.' },
-      proj: { badge: 'MAHSULOTLAR', title: 'Bizning mahsulotlarimiz', text: 'Har bir mahsulot zamonaviy texnologiyalar, puxta tahlil va real ehtiyojlarga asoslangan. VIP Parking, SoftData AIS va boshqa yechimlar orqali mijozlarimiz xavfsizligini ta’minlaymiz.', all: 'BARCHA MAHSULOTLARNI KO‘RISH', scroll: '// SCROLL → MAHSULOTLAR OQIMI', count: '03 MAHSULOT' },
+      proj: { badge: 'MAHSULOTLAR', title: 'Bizning mahsulotlarimiz', text: 'Har bir mahsulot zamonaviy texnologiyalar, puxta tahlil va real ehtiyojlarga asoslangan. VIP Parking, SoftData AIS va boshqa yechimlar orqali mijozlarimiz xavfsizligini ta’minlaymiz.', more: 'Batafsil' },
       cta: { badge: 'HAMKORLIK', title: 'Loyihangizni ishonchli jamoaga topshiring', text: 'G‘oyangizni zamonaviy dasturiy yechim va xavfsizlik texnologiyalari bilan hayotga tatbiq etamiz.' },
+      team: { badge: 'JAMOA', title: 'Bizning jamoamiz', text: 'Loyihalarimiz ortida turgan mutaxassislar — g‘oyadan yakuniy mahsulotgacha birga ishlaymiz.', cta: 'Jamoaga qo‘shiling' },
       clients: { badge: 'MIJOZLAR', title: 'Bizga ishonganlar', text: 'Davlat tashkilotlari va yirik korxonalar SoftData yechimlariga tayanadi.' },
       testimonials: { badge: 'MIJOZLAR FIKRI', title: 'Mijozlarimiz SoftData haqida nima deydi', text: 'Loyihalarimiz natijasida hamkorlarimiz xavfsizlik va nazorat jarayonlarini qanday yaxshilaganini o‘zlaridan eshiting.' },
       contact: { badge: 'ALOQA', title: 'Biz bilan bog‘laning', text: 'Loyiha yoki hamkorlik bo‘yicha savollaringiz bo‘lsa — yozing, jamoamiz tez orada javob beradi.', btn: 'XAT YOZISH', webL: 'VEB-SAYT', web: 'softdata.uz', emailL: 'EMAIL', email: 'info@softdata.uz', addrL: 'MANZIL', addr: 'Toshkent shahri' },
@@ -586,6 +638,13 @@ class Component extends DCLogic {
         { q: 'VIP Parking tizimi o‘rnatilgandan so‘ng kirish-chiqish nazorati butunlay avtomatlashdi — endi bu jarayon bizdan vaqt olmaydi.', n: 'D. Yusupova', r: 'Xavfsizlik bo‘limi boshlig‘i' },
         { q: 'SoftData AIS barcha kuzatuv ma’lumotlarini bitta oynada ko‘rish imkonini berdi. Qarorlar tezroq va aniqroq qabul qilinmoqda.', n: 'B. Rashidov', r: 'IT direktori' },
         { q: 'GPS monitoring tizimi tufayli transport parkimiz butunlay shaffof — har bir mashinaning joylashuvi va yo‘l tarixi nazoratda.', n: 'A. Karimov', r: 'Logistika menejeri' }
+      ],
+      teamList: [
+        { n: 'Xurshid', dept: 'DIZAYN', role: 'Product dizayner', loc: 'Toshkent', photo: 'assets/team-xurshid.png' },
+        { n: 'Javohir', dept: 'BACKEND', role: 'Backend dasturchi', loc: 'Toshkent', photo: 'assets/team-javohir-backend.png' },
+        { n: 'Eldor', dept: 'FRONTEND', role: 'Frontend dasturchi', loc: 'Toshkent', photo: 'assets/team-eldor.png' },
+        { n: 'Jaxongir', dept: 'FRONTEND', role: 'Frontend dasturchi', loc: 'Toshkent', photo: 'assets/team-jaxongir.png' },
+        { n: 'Javohir', dept: 'BOSHQARUV', role: 'Loyiha menejeri', loc: 'Toshkent' }
       ]
     },
     ru: {
@@ -593,8 +652,9 @@ class Component extends DCLogic {
       stats: { l1: 'крупных завершённых проектов', l2: 'государственных и корпоративных клиентов', l3: 'направлений продуктов', l4: 'непрерывный мониторинг', l5: 'бесперебойность системы', cl1: 'завершённых проектов', cl2: 'направлений продуктов', cl3: 'постоянных клиентов', cl4: 'стабильность системы' },
       about: { badge: 'О НАС', title: 'Надёжные программные решения с 2021 года', text: 'SoftData — технологическая компания, разрабатывающая программные продукты, системы безопасности, умную парковку и платформы видеонаблюдения. С момента основания в 2021 году мы успешно реализовали более 6 крупных проектов для государственных органов и крупного бизнеса.', more: 'ПОДРОБНЕЕ ⇣', mLabel: 'МИССИЯ', mText: 'Делать работу организаций безопасной, прозрачной и эффективной с помощью современного ПО и решений безопасности на базе ИИ.', vLabel: 'ВИДЕНИЕ', vText: 'Стать ведущим разработчиком программных продуктов в сфере безопасности и контроля в регионе.', file: 'КОМАНДА.JPG', wait: 'ОЖИДАНИЕ' },
       serv: { badge: 'УСЛУГИ', title: 'Полный спектр программных решений для бизнеса и государства', sub: 'От мобильных и веб-приложений до систем безопасности, ИИ и умной парковки — в одном месте.' },
-      proj: { badge: 'ПРОДУКТЫ', title: 'Наши продукты', text: 'Каждый продукт основан на современных технологиях, тщательном анализе и реальных потребностях. VIP Parking, SoftData AIS и другие решения обеспечивают безопасность наших клиентов.', all: 'СМОТРЕТЬ ВСЕ ПРОДУКТЫ', scroll: '// SCROLL → ПОТОК ПРОДУКТОВ', count: '03 ПРОДУКТА' },
+      proj: { badge: 'ПРОДУКТЫ', title: 'Наши продукты', text: 'Каждый продукт основан на современных технологиях, тщательном анализе и реальных потребностях. VIP Parking, SoftData AIS и другие решения обеспечивают безопасность наших клиентов.', more: 'Подробнее' },
       cta: { badge: 'СОТРУДНИЧЕСТВО', title: 'Доверьте проект надёжной команде', text: 'Воплотим вашу идею с помощью современных программных решений и технологий безопасности.' },
+      team: { badge: 'КОМАНДА', title: 'Наша команда', text: 'Специалисты, стоящие за нашими проектами — от идеи до готового продукта работаем вместе.', cta: 'Присоединяйтесь' },
       clients: { badge: 'КЛИЕНТЫ', title: 'Нам доверяют', text: 'Государственные организации и крупный бизнес полагаются на решения SoftData.' },
       testimonials: { badge: 'ОТЗЫВЫ КЛИЕНТОВ', title: 'Что говорят о SoftData наши клиенты', text: 'Узнайте от наших партнёров, как проекты SoftData улучшили процессы безопасности и контроля.' },
       contact: { badge: 'КОНТАКТ', title: 'Свяжитесь с нами', text: 'Есть вопросы по проекту или сотрудничеству — напишите, команда ответит в ближайшее время.', btn: 'НАПИСАТЬ', webL: 'ВЕБ-САЙТ', web: 'softdata.uz', emailL: 'EMAIL', email: 'info@softdata.uz', addrL: 'АДРЕС', addr: 'город Ташкент' },
@@ -620,6 +680,13 @@ class Component extends DCLogic {
         { q: 'После внедрения VIP Parking контроль въезда и выезда полностью автоматизирован — теперь это не занимает нашего времени.', n: 'Д. Юсупова', r: 'Начальник отдела безопасности' },
         { q: 'SoftData AIS позволила видеть все данные наблюдения в одном окне. Решения принимаются быстрее и точнее.', n: 'Б. Рашидов', r: 'ИТ-директор' },
         { q: 'Благодаря GPS-мониторингу наш автопарк стал полностью прозрачным — местоположение и история маршрута каждой машины под контролем.', n: 'А. Каримов', r: 'Менеджер по логистике' }
+      ],
+      teamList: [
+        { n: 'Xurshid', dept: 'ДИЗАЙН', role: 'Продакт-дизайнер', loc: 'Ташкент', photo: 'assets/team-xurshid.png' },
+        { n: 'Javohir', dept: 'БЭКЕНД', role: 'Backend-разработчик', loc: 'Ташкент', photo: 'assets/team-javohir-backend.png' },
+        { n: 'Eldor', dept: 'ФРОНТЕНД', role: 'Frontend-разработчик', loc: 'Ташкент', photo: 'assets/team-eldor.png' },
+        { n: 'Jaxongir', dept: 'ФРОНТЕНД', role: 'Frontend-разработчик', loc: 'Ташкент', photo: 'assets/team-jaxongir.png' },
+        { n: 'Javohir', dept: 'УПРАВЛЕНИЕ', role: 'Менеджер проекта', loc: 'Ташкент' }
       ]
     },
     en: {
@@ -627,8 +694,9 @@ class Component extends DCLogic {
       stats: { l1: 'major projects delivered', l2: 'government & corporate clients', l3: 'product directions', l4: 'continuous monitoring', l5: 'system uptime', cl1: 'projects delivered', cl2: 'product directions', cl3: 'long-term clients', cl4: 'system stability' },
       about: { badge: 'ABOUT', title: 'Reliable software solutions since 2021', text: 'SoftData is a technology company building software products, security systems, smart parking and surveillance & monitoring platforms. Since our founding in 2021 we have delivered more than 6 major projects for government agencies and large enterprises.', more: 'LEARN MORE ⇣', mLabel: 'MISSION', mText: 'Make organizations safer, more transparent and more efficient through modern software and AI-powered security solutions.', vLabel: 'VISION', vText: 'Become the region’s leading developer of software products for security and control.', file: 'TEAM.JPG', wait: 'PENDING' },
       serv: { badge: 'SERVICES', title: 'Full-stack software solutions for business and government', sub: 'From mobile and web apps to security, AI and smart parking systems — all in one place.' },
-      proj: { badge: 'PRODUCTS', title: 'Our products', text: 'Every product is built on modern technology, careful analysis and real needs. VIP Parking, SoftData AIS and other solutions keep our clients secure.', all: 'VIEW ALL PRODUCTS', scroll: '// SCROLL → PRODUCT STREAM', count: '03 PRODUCTS' },
+      proj: { badge: 'PRODUCTS', title: 'Our products', text: 'Every product is built on modern technology, careful analysis and real needs. VIP Parking, SoftData AIS and other solutions keep our clients secure.', more: 'Learn more' },
       cta: { badge: 'PARTNERSHIP', title: 'Hand your project to a team you can trust', text: 'We bring your idea to life with modern software solutions and security technology.' },
+      team: { badge: 'TEAM', title: 'Our team', text: 'The people behind our projects — from idea to finished product, we build together.', cta: 'Join our team' },
       clients: { badge: 'CLIENTS', title: 'Trusted by', text: 'Government organizations and large enterprises rely on SoftData solutions.' },
       testimonials: { badge: 'TESTIMONIALS', title: 'What our clients say about SoftData', text: 'Hear from our partners how SoftData’s solutions improved their security and monitoring processes.' },
       contact: { badge: 'CONTACT', title: 'Get in touch', text: 'Have a question about a project or partnership — write to us and our team will reply shortly.', btn: 'WRITE TO US', webL: 'WEBSITE', web: 'softdata.uz', emailL: 'EMAIL', email: 'info@softdata.uz', addrL: 'ADDRESS', addr: 'Tashkent' },
@@ -654,6 +722,13 @@ class Component extends DCLogic {
         { q: 'After installing VIP Parking, entry and exit control became fully automated — it no longer takes up our time.', n: 'D. Yusupova', r: 'Head of Security' },
         { q: 'SoftData AIS lets us see all monitoring data in one window. Decisions are made faster and more accurately.', n: 'B. Rashidov', r: 'IT Director' },
         { q: 'Thanks to the GPS monitoring system, our vehicle fleet is fully transparent — location and route history for every car is under control.', n: 'A. Karimov', r: 'Logistics Manager' }
+      ],
+      teamList: [
+        { n: 'Xurshid', dept: 'DESIGN', role: 'Product Designer', loc: 'Tashkent', photo: 'assets/team-xurshid.png' },
+        { n: 'Javohir', dept: 'BACKEND', role: 'Backend Developer', loc: 'Tashkent', photo: 'assets/team-javohir-backend.png' },
+        { n: 'Eldor', dept: 'FRONTEND', role: 'Frontend Developer', loc: 'Tashkent', photo: 'assets/team-eldor.png' },
+        { n: 'Jaxongir', dept: 'FRONTEND', role: 'Frontend Developer', loc: 'Tashkent', photo: 'assets/team-jaxongir.png' },
+        { n: 'Javohir', dept: 'MANAGEMENT', role: 'Project Manager', loc: 'Tashkent' }
       ]
     }
   };
@@ -832,38 +907,8 @@ class Component extends DCLogic {
       else { hold = 0; ci = 0; pi = (pi + 1) % list.length; this.setState({ typed: '' }); }
     }, 62);
 
-    // loyihalar: scrollga bog'liq gorizontal harakat + parallax
-    const wrap = document.getElementById('proj-wrap');
-    const track = document.getElementById('proj-track');
-    if (wrap && track) {
-      const update = () => {
-        const viewport = track.parentElement ? track.parentElement.clientWidth : window.innerWidth;
-        const dist = Math.max(0, track.scrollWidth - viewport);
-        // bo'sh scroll qolmasligi uchun balandlikni aniq masofaga tenglashtiramiz
-        // (0.7 — scroll masofasi qisqartirilgan, kartalar tezroq suriladi)
-        const targetH = window.innerHeight + Math.round(dist * 0.7);
-        if (Math.abs((wrap._h || 0) - targetH) > 2) { wrap._h = targetH; wrap.style.height = targetH + 'px'; }
-        const rect = wrap.getBoundingClientRect();
-        const total = rect.height - window.innerHeight;
-        const p = Math.max(0, Math.min(1, -rect.top / (total > 0 ? total : 1)));
-        track.style.transform = 'translateX(' + (-p * dist).toFixed(1) + 'px)';
-        // joriy karta hisoblagichi
-        const cnt = document.getElementById('proj-count');
-        if (cnt) cnt.textContent = String(1 + Math.round(p * 2)).padStart(2, '0');
-        const bar = document.getElementById('proj-progress');
-        if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
-        track.querySelectorAll('[data-plx]').forEach((el) => {
-          const f = parseFloat(el.getAttribute('data-plx')) || 0;
-          el.style.transform = 'translateX(' + ((p - 0.5) * f * 2).toFixed(1) + 'px)';
-        });
-      };
-      this._projScroll = () => requestAnimationFrame(update);
-      window.addEventListener('scroll', this._projScroll, { passive: true });
-      window.addEventListener('resize', this._projScroll);
-      update();
-    }
-
     this.setupTesti();
+    this.setupTeam();
 
     // counters on view
     const row = document.getElementById('stats-row');
@@ -951,6 +996,64 @@ class Component extends DCLogic {
     render(true);
   }
 
+  // jamoa: xuddi mijozlar fikri slayderi kabi, lekin avtomatik aylanishsiz — o'qish uchun qo'lda boshqariladi
+  setupTeam() {
+    const wrap = document.getElementById('team-wrap');
+    const track = document.getElementById('team-track');
+    if (!wrap || !track || this._teamWired) return;
+    this._teamWired = true;
+    const GAP = 18;
+    const prevBtn = document.getElementById('team-prev');
+    const nextBtn = document.getElementById('team-next');
+    const barEl = document.getElementById('team-progress');
+    let index = 0;
+
+    const cardWidth = () => { const c = track.children[0]; return c ? c.getBoundingClientRect().width : 0; };
+    const visibleCount = () => { const cw = cardWidth(); return cw ? Math.max(1, Math.round((wrap.clientWidth + GAP) / (cw + GAP))) : 1; };
+    const maxIndex = () => Math.max(0, track.children.length - visibleCount());
+
+    const render = (instant) => {
+      const mx = maxIndex();
+      index = Math.max(0, Math.min(mx, index));
+      const px = -index * (cardWidth() + GAP);
+      track.style.transition = instant ? 'none' : 'transform .6s cubic-bezier(.2,.7,.3,1)';
+      track.style.transform = 'translateX(' + px.toFixed(1) + 'px)';
+      if (instant) { track.offsetHeight; track.style.transition = 'transform .6s cubic-bezier(.2,.7,.3,1)'; }
+      if (barEl) barEl.style.width = (mx > 0 ? (index / mx) * 100 : 100).toFixed(1) + '%';
+      if (prevBtn) { prevBtn.style.opacity = index <= 0 ? '.35' : '1'; prevBtn.style.pointerEvents = index <= 0 ? 'none' : 'auto'; }
+      if (nextBtn) { nextBtn.style.opacity = index >= mx ? '.35' : '1'; nextBtn.style.pointerEvents = index >= mx ? 'none' : 'auto'; }
+    };
+    const goTo = (i) => { index = Math.max(0, Math.min(maxIndex(), i)); render(false); };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+
+    let dragging = false, startX = 0, baseTranslate = 0;
+    track.style.cursor = 'grab';
+    track.addEventListener('pointerdown', (e) => {
+      dragging = true; startX = e.clientX; baseTranslate = -index * (cardWidth() + GAP);
+      track.style.transition = 'none'; track.style.cursor = 'grabbing';
+      try { track.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      track.style.transform = 'translateX(' + (baseTranslate + (e.clientX - startX)).toFixed(1) + 'px)';
+    });
+    const endDrag = (e) => {
+      if (!dragging) return;
+      dragging = false; track.style.cursor = 'grab';
+      const dx = (e.clientX || 0) - startX;
+      if (Math.abs(dx) > 60) goTo(index + (dx < 0 ? 1 : -1)); else render(false);
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    track.addEventListener('pointerleave', (e) => { if (dragging) endDrag(e); });
+
+    this._teamRecalc = () => render(true);
+    window.addEventListener('resize', this._teamRecalc);
+    render(true);
+  }
+
   // "Bizga yozing" vidjeti: xabarni maxfiy tokensiz proxy (masalan Cloudflare Worker) orqali Telegramga uzatadi
   sendChatMessage() {
     const text = (this.state.chatInput || '').trim();
@@ -975,11 +1078,8 @@ class Component extends DCLogic {
     if (this._heroRaf) Object.values(this._heroRaf).forEach((id) => cancelAnimationFrame(id));
     if (this._heroResize) Object.values(this._heroResize).forEach((fn) => window.removeEventListener('resize', fn));
     if (this._langOutside) document.removeEventListener('click', this._langOutside);
-    if (this._projScroll) {
-      window.removeEventListener('scroll', this._projScroll);
-      window.removeEventListener('resize', this._projScroll);
-    }
     if (this._testiRecalc) window.removeEventListener('resize', this._testiRecalc);
+    if (this._teamRecalc) window.removeEventListener('resize', this._teamRecalc);
   }
 
   runCounters() {
@@ -1048,8 +1148,9 @@ class Component extends DCLogic {
     const c = this.langData();
     const services = c.services.map((sv, i) => ({ num: String(i + 1).padStart(2, '0'), title: sv.t, desc: sv.d, d1: this.icons[i].d1, d2: this.icons[i].d2 }));
     const projectHrefs = ['Loyiha - VIP Parking.dc.html', 'Loyiha - SoftData AIS.dc.html', 'Loyiha - SoftData GPS.dc.html'];
-    const projects = c.projects.map((pr, i) => ({ num: String(i + 1).padStart(2, '0'), name: pr.n, tag: pr.tag, desc: pr.d, href: projectHrefs[i] || '#', plx: 22 + (i % 3) * 16, bg: `radial-gradient(130% 160% at ${25 + (i % 3) * 25}% 120%, rgba(120,240,90,.65), rgba(30,90,22,.45) 45%, #040604 78%)` }));
+    const projects = c.projects.map((pr, i) => ({ num: String(i + 1).padStart(2, '0'), name: pr.n, tag: pr.tag, desc: pr.d, href: projectHrefs[i] || '#', photoId: 'proj-photo-' + i }));
     const testimonialItems = c.testimonialsList.map((t) => ({ quote: t.q, name: t.n, role: t.r, initials: t.n.replace(/[^A-Za-zА-Яа-яЁёʻ'’]/g, ' ').split(' ').filter(Boolean).map((w) => w[0]).join('').toUpperCase(), stars: '★★★★★' }));
+    const teamItems = c.teamList.map((m, i) => ({ name: m.n, dept: m.dept, role: m.role, location: m.loc, photoId: 'team-photo-' + i, photo: m.photo || '', hasPhoto: !!m.photo, noPhoto: !m.photo }));
     return {
       isCyber: true,
       ...langVals,
@@ -1063,7 +1164,7 @@ class Component extends DCLogic {
       projects: projects,
       navAbout: c.nav.about, navServices: c.nav.services, navProjects: c.nav.projects, navContact: c.nav.contact, navStatus: c.nav.status,
       heroBadge: c.hero.badge, heroT1: c.hero.t1, heroAccent: c.hero.accent, heroT2: c.hero.t2, heroBtn1: c.hero.btn1, heroBtn2: c.hero.btn2,
-      decor: c.decor, stats: c.stats, about: c.about, serv: c.serv, proj: c.proj, cta: c.cta, clients: c.clients, testimonials: c.testimonials, testimonialItems: testimonialItems, contact: c.contact, footer: c.footer,
+      decor: c.decor, stats: c.stats, about: c.about, serv: c.serv, proj: c.proj, cta: c.cta, clients: c.clients, testimonials: c.testimonials, testimonialItems: testimonialItems, team: c.team, teamItems: teamItems, contact: c.contact, footer: c.footer,
       ctaDots: this.ctaDotsEl(),
       chat: c.chat,
       chatOpen: !!s.chatOpen,
