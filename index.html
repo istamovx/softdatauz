@@ -230,7 +230,7 @@
   </section>
 
   <!-- ============ JAMOA ============ -->
-  <section id="jamoa" data-screen-label="Jamoa" style="background: #F5F5F2; color: #14180F; padding: 0 clamp(16px, 4vw, 56px); border-top: 1px solid #E4E4DD">
+  <section id="jamoa" data-screen-label="Jamoa" style="display: none; background: #F5F5F2; color: #14180F; padding: 0 clamp(16px, 4vw, 56px); border-top: 1px solid #E4E4DD">
     <div style="max-width: 1280px; box-sizing: border-box; margin: 0 auto; border-left: 1px solid #E4E4DD; border-right: 1px solid #E4E4DD; padding: clamp(48px, 8vw, 90px) clamp(16px, 4vw, 56px) clamp(56px, 9vw, 100px)">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap">
         <div style="max-width: 620px">
@@ -362,8 +362,105 @@
           </div>
           <div style="position: relative">
             <span style="position: absolute; top: 14px; left: 14px; z-index: 2; font-family: 'IBM Plex Mono', monospace; font-size: 16px; letter-spacing: .04em; color: #14180F; background: #fff; padding: 4px 9px; border: 1px solid #E4E4DD">{{ p.num }}</span>
-            <div style="position: relative; height: clamp(220px, 26vw, 320px); overflow: hidden; border: 1px solid #E4E4DD">
-              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.photoId }}" shape="rect" placeholder="{{ p.name }} mahsuloti surati" hint-size="100%,320px"></x-import>
+            <div data-proj-preview="" style="position: relative; height: clamp(220px, 26vw, 320px); overflow: hidden; border: 1px solid #E4E4DD; background: #0A0C09">
+              <div data-proj-frame="" style="position: absolute; top: 0; left: 0; width: 960px; transform-origin: top left; background: #0A0C09">
+                <sc-if value="{{ p.m1 }}" hint-placeholder-val="{{ true }}">
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #0d1310; border-bottom: 1px solid #1B2018">
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #E4574B"></span>
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #E0A93E"></span>
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #29B85D"></span>
+                    <span style="margin-left: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568">app.softdata.uz/dashboard</span>
+                  </div>
+                  <div style="display: flex; min-height: 480px">
+                    <div style="width: 68px; flex: none; background: #0A0C09; border-right: 1px solid #1B2018; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 0">
+                      <div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #0A0F08; background: #29B85D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z M12 12a3 3 0 1 0 0.001 0"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.3.9a7 7 0 0 0-2.1-1.2L14 3h-4l-.5 2.5a7 7 0 0 0-2.1 1.2l-2.3-.9-2 3.4 2 1.6A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.3-.9c.6.5 1.3.9 2.1 1.2L10 21h4l.5-2.5c.8-.3 1.5-.7 2.1-1.2l2.3.9 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></svg></div>
+                    </div>
+                    <div style="flex: 1; min-width: 0; background: #F5F5F2; padding: 22px 24px; display: flex; flex-direction: column; gap: 18px">
+                      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+                        <div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Band joylar</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">142 / 200</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Bugungi kirish</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">386</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">O‘rtacha turish</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">48 daq</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Rad etilgan urinish</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">7</div></div>
+                      </div>
+                      <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; flex: 1; min-height: 0">
+                        <div style="background: #101408; border: 1px solid #1B2018; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+                          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568; letter-spacing: .06em">KAMERA — KIRISH A</div>
+                          <div style="position: relative; flex: 1; background: linear-gradient(160deg,#0c130d,#060806); border: 1px solid #22281f; min-height: 190px">
+                            <div style="position: absolute; left: 16px; bottom: 16px; background: rgba(6,9,6,.9); border: 1px solid #29B85D; color: #29B85D; font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: .06em; padding: 6px 12px">01 A 777 AA</div>
+                            <div style="position: absolute; left: 14px; top: 14px; width: 18px; height: 18px; border-top: 2px solid #29B85D; border-left: 2px solid #29B85D"></div>
+                            <div style="position: absolute; right: 14px; top: 14px; width: 18px; height: 18px; border-top: 2px solid #29B85D; border-right: 2px solid #29B85D"></div>
+                            <div style="position: absolute; left: 14px; bottom: 14px; width: 18px; height: 18px; border-bottom: 2px solid #29B85D; border-left: 2px solid #29B85D"></div>
+                            <div style="position: absolute; right: 14px; bottom: 14px; width: 18px; height: 18px; border-bottom: 2px solid #29B85D; border-right: 2px solid #29B85D"></div>
+                          </div>
+                        </div>
+                        <div style="background: #fff; border: 1px solid #E4E4DD; padding: 16px; display: flex; flex-direction: column; gap: 8px; overflow: hidden">
+                          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568; letter-spacing: .06em">SO‘NGGI KIRISH-CHIQISHLAR</div>
+                          <div style="display: grid; grid-template-columns: 1.1fr 1fr .8fr 1fr; gap: 8px; font-size: 16px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">01 A 777 AA</span><span style="color:#6B7568">Bugun, 09:12</span><span style="color:#6B7568">Kirish A</span><span><span style="color:#29B85D">Ruxsat berildi</span></span></div><div style="display: grid; grid-template-columns: 1.1fr 1fr .8fr 1fr; gap: 8px; font-size: 16px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">10 B 452 KX</span><span style="color:#6B7568">Bugun, 09:10</span><span style="color:#6B7568">Chiqish B</span><span><span style="color:#29B85D">Ruxsat berildi</span></span></div><div style="display: grid; grid-template-columns: 1.1fr 1fr .8fr 1fr; gap: 8px; font-size: 16px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">01 A 903 QQ</span><span style="color:#6B7568">Bugun, 09:05</span><span style="color:#6B7568">Kirish A</span><span><span style="color:#29B85D">Ruxsat berildi</span></span></div><div style="display: grid; grid-template-columns: 1.1fr 1fr .8fr 1fr; gap: 8px; font-size: 16px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">70 M 118 PZ</span><span style="color:#6B7568">Bugun, 08:58</span><span style="color:#6B7568">Kirish A</span><span><span style="color:#C4453A">Rad etildi</span></span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ p.m2 }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #0d1310; border-bottom: 1px solid #1B2018">
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #E4574B"></span>
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #E0A93E"></span>
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #29B85D"></span>
+                    <span style="margin-left: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568">app.softdata.uz/dashboard</span>
+                  </div>
+                  <div style="display: flex; min-height: 480px">
+                    <div style="width: 68px; flex: none; background: #0A0C09; border-right: 1px solid #1B2018; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 0">
+                      <div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3l6 3 6-3v15l-6 3-6-3-3 1.5V4.5zM9 3v15M15 6v15"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #0A0F08; background: #29B85D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z M12 10v4 M12 17h.01"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.3.9a7 7 0 0 0-2.1-1.2L14 3h-4l-.5 2.5a7 7 0 0 0-2.1 1.2l-2.3-.9-2 3.4 2 1.6A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.3-.9c.6.5 1.3.9 2.1 1.2L10 21h4l.5-2.5c.8-.3 1.5-.7 2.1-1.2l2.3.9 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></svg></div>
+                    </div>
+                    <div style="flex: 1; min-width: 0; background: #F5F5F2; padding: 22px 24px; display: flex; flex-direction: column; gap: 18px">
+                      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+                        <div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Faol ob’ektlar</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">24</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Ochiq hodisalar</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">3</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">O‘rtacha javob</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">2.1 daq</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Tizim uzluksizligi</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">99.9%</div></div>
+                      </div>
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; min-height: 0">
+                        <div style="background: #fff; border: 1px solid #E4E4DD; padding: 16px">
+                          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568; letter-spacing: .06em; margin-bottom: 10px">OB’EKTLAR HOLATI</div>
+                          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px">
+                            <div style="border: 1px solid #E4E4DD; padding: 12px; text-align: center"><div style="width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 8px; background: #29B85D"></div><div style="font-size: 15px; color: #33392E">Bosh ofis</div></div><div style="border: 1px solid #E4E4DD; padding: 12px; text-align: center"><div style="width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 8px; background: #29B85D"></div><div style="font-size: 15px; color: #33392E">Filial #4</div></div><div style="border: 1px solid #E4E4DD; padding: 12px; text-align: center"><div style="width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 8px; background: #29B85D"></div><div style="font-size: 15px; color: #33392E">Filial #7</div></div><div style="border: 1px solid #E4E4DD; padding: 12px; text-align: center"><div style="width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 8px; background: #C4453A"></div><div style="font-size: 15px; color: #33392E">Filial #12</div></div><div style="border: 1px solid #E4E4DD; padding: 12px; text-align: center"><div style="width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 8px; background: #29B85D"></div><div style="font-size: 15px; color: #33392E">Ombor #2</div></div><div style="border: 1px solid #E4E4DD; padding: 12px; text-align: center"><div style="width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 8px; background: #29B85D"></div><div style="font-size: 15px; color: #33392E">Server markazi</div></div>
+                          </div>
+                        </div>
+                        <div style="background: #101408; border: 1px solid #1B2018; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+                          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568; letter-spacing: .06em">HODISALAR OQIMI</div>
+                          <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #1B2018"><span style="width: 8px; height: 8px; border-radius: 50%; background: #C4453A; margin-top: 6px; flex: none"></span><div><div style="font-size: 16px; color: #DDE3DA">Ruxsatsiz kirish urinishi — Filial #12</div><div style="font-size: 14px; color: #6B7568; margin-top: 2px">Yuqori ustuvorlik · 2 daq oldin</div></div></div><div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #1B2018"><span style="width: 8px; height: 8px; border-radius: 50%; background: #E0A93E; margin-top: 6px; flex: none"></span><div><div style="font-size: 16px; color: #DDE3DA">Kamera aloqasi uzildi — Ob’ekt #4</div><div style="font-size: 14px; color: #6B7568; margin-top: 2px">O‘rta ustuvorlik · 14 daq oldin</div></div></div><div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #1B2018"><span style="width: 8px; height: 8px; border-radius: 50%; background: #29B85D; margin-top: 6px; flex: none"></span><div><div style="font-size: 16px; color: #DDE3DA">Tizim yangilandi — Barcha modullar</div><div style="font-size: 14px; color: #6B7568; margin-top: 2px">Past ustuvorlik · 1 soat oldin</div></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ p.m3 }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #0d1310; border-bottom: 1px solid #1B2018">
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #E4574B"></span>
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #E0A93E"></span>
+                    <span style="width: 11px; height: 11px; border-radius: 50%; background: #29B85D"></span>
+                    <span style="margin-left: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568">app.softdata.uz/dashboard</span>
+                  </div>
+                  <div style="display: flex; min-height: 480px">
+                    <div style="width: 68px; flex: none; background: #0A0C09; border-right: 1px solid #1B2018; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 0">
+                      <div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #0A0F08; background: #29B85D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3l6 3 6-3v15l-6 3-6-3-3 1.5V4.5zM9 3v15M15 6v15"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v9H3zM14 10h4l3 3v2h-7zM6.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM17.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg></div><div style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #5C6659; background: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.3.9a7 7 0 0 0-2.1-1.2L14 3h-4l-.5 2.5a7 7 0 0 0-2.1 1.2l-2.3-.9-2 3.4 2 1.6A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.3-.9c.6.5 1.3.9 2.1 1.2L10 21h4l.5-2.5c.8-.3 1.5-.7 2.1-1.2l2.3.9 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></svg></div>
+                    </div>
+                    <div style="flex: 1; min-width: 0; background: #F5F5F2; padding: 22px 24px; display: flex; flex-direction: column; gap: 18px">
+                      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+                        <div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Jami transport</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">48</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Harakatda</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">31</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">To‘xtagan</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">17</div></div><div style="background: #fff; border: 1px solid #E4E4DD; padding: 14px 16px"><div style="font-size: 15px; color: #6B7568">Bugungi masofa</div><div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; color: #14180F; margin-top: 4px">2 340 km</div></div>
+                      </div>
+                      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; flex: 1; min-height: 0">
+                        <div style="position: relative; background: linear-gradient(160deg,#0c130d,#060806); border: 1px solid #1B2018; min-height: 220px; overflow: hidden">
+                          <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(41,184,93,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(41,184,93,.10) 1px, transparent 1px); background-size: 26px 26px"></div>
+                          <div style="position: absolute; left: 28%; top: 38%; width: 10px; height: 10px; border-radius: 50%; background: #29B85D; box-shadow: 0 0 10px #29B85D"></div>
+                          <div style="position: absolute; left: 55%; top: 60%; width: 10px; height: 10px; border-radius: 50%; background: #8B948A"></div>
+                          <div style="position: absolute; left: 68%; top: 30%; width: 10px; height: 10px; border-radius: 50%; background: #29B85D; box-shadow: 0 0 10px #29B85D"></div>
+                          <div style="position: absolute; left: 40%; top: 75%; width: 10px; height: 10px; border-radius: 50%; background: #E0A93E"></div>
+                          <div style="position: absolute; left: 16px; top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568; letter-spacing: .06em">JONLI XARITA</div>
+                        </div>
+                        <div style="background: #fff; border: 1px solid #E4E4DD; padding: 16px; display: flex; flex-direction: column; gap: 8px; overflow: hidden">
+                          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #6B7568; letter-spacing: .06em">TRANSPORT RO‘YXATI</div>
+                          <div style="display: grid; grid-template-columns: 1.1fr .8fr 1.1fr; gap: 8px; font-size: 15px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">01 A 112 BB</span><span><span style="color:#29B85D">Harakatda</span></span><span style="color:#6B7568">Toshkent, Chilonzor</span></div><div style="display: grid; grid-template-columns: 1.1fr .8fr 1.1fr; gap: 8px; font-size: 15px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">01 B 908 CX</span><span><span style="color:#8B948A">To‘xtagan</span></span><span style="color:#6B7568">Toshkent, Yunusobod</span></div><div style="display: grid; grid-template-columns: 1.1fr .8fr 1.1fr; gap: 8px; font-size: 15px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">30 M 441 KL</span><span><span style="color:#29B85D">Harakatda</span></span><span style="color:#6B7568">Samarqand yo‘li</span></div><div style="display: grid; grid-template-columns: 1.1fr .8fr 1.1fr; gap: 8px; font-size: 15px; padding: 8px 0; border-bottom: 1px solid #EEEEEA; color: #14180F"><span style="font-family:'IBM Plex Mono', monospace">01 A 556 TT</span><span><span style="color:#E0A93E">Muhandis kutmoqda</span></span><span style="color:#6B7568">Depo #2</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
             </div>
           </div>
         </div>
@@ -909,6 +1006,7 @@ class Component extends DCLogic {
 
     this.setupTesti();
     this.setupTeam();
+    this.setupProjPreviews();
 
     // counters on view
     const row = document.getElementById('stats-row');
@@ -1054,6 +1152,26 @@ class Component extends DCLogic {
     render(true);
   }
 
+  // mahsulotlar: har bir loyiha sahifasidagi haqiqiy dashboard mokapini kichraytirib kartaga sig'diradi
+  setupProjPreviews() {
+    const wraps = [...document.querySelectorAll('[data-proj-preview]')];
+    if (!wraps.length || this._projPreviewWired) return;
+    this._projPreviewWired = true;
+    const DESIGN_W = 960;
+    const update = () => {
+      wraps.forEach((wrap) => {
+        const frame = wrap.querySelector('[data-proj-frame]');
+        if (!frame) return;
+        const scale = wrap.clientWidth / DESIGN_W;
+        frame.style.transform = 'scale(' + scale.toFixed(4) + ')';
+        wrap.style.height = (frame.offsetHeight * scale).toFixed(1) + 'px';
+      });
+    };
+    this._projPreviewResize = () => update();
+    window.addEventListener('resize', this._projPreviewResize);
+    update();
+  }
+
   // "Bizga yozing" vidjeti: xabarni maxfiy tokensiz proxy (masalan Cloudflare Worker) orqali Telegramga uzatadi
   sendChatMessage() {
     const text = (this.state.chatInput || '').trim();
@@ -1080,6 +1198,7 @@ class Component extends DCLogic {
     if (this._langOutside) document.removeEventListener('click', this._langOutside);
     if (this._testiRecalc) window.removeEventListener('resize', this._testiRecalc);
     if (this._teamRecalc) window.removeEventListener('resize', this._teamRecalc);
+    if (this._projPreviewResize) window.removeEventListener('resize', this._projPreviewResize);
   }
 
   runCounters() {
@@ -1148,7 +1267,7 @@ class Component extends DCLogic {
     const c = this.langData();
     const services = c.services.map((sv, i) => ({ num: String(i + 1).padStart(2, '0'), title: sv.t, desc: sv.d, d1: this.icons[i].d1, d2: this.icons[i].d2 }));
     const projectHrefs = ['Loyiha - VIP Parking.dc.html', 'Loyiha - SoftData AIS.dc.html', 'Loyiha - SoftData GPS.dc.html'];
-    const projects = c.projects.map((pr, i) => ({ num: String(i + 1).padStart(2, '0'), name: pr.n, tag: pr.tag, desc: pr.d, href: projectHrefs[i] || '#', photoId: 'proj-photo-' + i }));
+    const projects = c.projects.map((pr, i) => ({ num: String(i + 1).padStart(2, '0'), name: pr.n, tag: pr.tag, desc: pr.d, href: projectHrefs[i] || '#', m1: i === 0, m2: i === 1, m3: i === 2 }));
     const testimonialItems = c.testimonialsList.map((t) => ({ quote: t.q, name: t.n, role: t.r, initials: t.n.replace(/[^A-Za-zА-Яа-яЁёʻ'’]/g, ' ').split(' ').filter(Boolean).map((w) => w[0]).join('').toUpperCase(), stars: '★★★★★' }));
     const teamItems = c.teamList.map((m, i) => ({ name: m.n, dept: m.dept, role: m.role, location: m.loc, photoId: 'team-photo-' + i, photo: m.photo || '', hasPhoto: !!m.photo, noPhoto: !m.photo }));
     return {
